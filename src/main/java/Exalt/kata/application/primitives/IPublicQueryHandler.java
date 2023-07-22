@@ -1,8 +1,12 @@
 package exalt.kata.application.primitives;
 
-import exalt.kata.domain.core.primitives.Result;
+import exalt.kata.domain.core.primitives.PublicError;
+import exalt.kata.domain.core.primitives.results.Result;
 
-public interface IPublicQueryHandler<TPublicQueryRequest extends IPublicQueryRequest, TPublicQueryResponse extends IPublicQueryResponse>
+public interface IPublicQueryHandler<
+    TPublicQueryRequest extends IPublicQueryRequest,
+    TPublicQueryResponse extends IPublicQueryResponse,
+    TPublicApplicationError extends PublicError>
 {
-    Result<TPublicQueryResponse> handleQuery(TPublicQueryRequest request);
+    Result<TPublicQueryResponse, TPublicApplicationError> handleQuery(TPublicQueryRequest request);
 }
