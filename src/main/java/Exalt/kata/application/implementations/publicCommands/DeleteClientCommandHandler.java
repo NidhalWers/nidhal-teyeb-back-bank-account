@@ -50,7 +50,7 @@ public class DeleteClientCommandHandler implements IPublicCommandHandler<DeleteC
         var clientAggregate = clientAggregateResult.value();
 
         var getBankAccountsByClientExternalId = bankAccountQueryAdapter.getNotDeletedBankAccountByClientExternalId(clientAggregate.getExternalId());
-        if (!getBankAccountsByClientExternalId.isEmpty()) return Result.fail(new PublicError("Client have not deleted all his accounts", ErrorCode.resource_not_found));
+        if (!getBankAccountsByClientExternalId.isEmpty()) return Result.fail(new PublicError("Client have not deleted all his accounts", ErrorCode.client_error));
 
         var deleteClientResult = clientAggregate.delete();
         if (deleteClientResult.isFailed()) return Result.fail(new PublicError(deleteClientResult.getFirstErrorMessage(), ErrorCode.client_error));

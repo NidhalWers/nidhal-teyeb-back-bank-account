@@ -3,12 +3,14 @@ package exalt.kata.infrastructure.persistence.implementations;
 import exalt.kata.domain.core.Action;
 import exalt.kata.domain.core.primitives.results.base.Result;
 import exalt.kata.infrastructure.persistence.contracts.IRepositoryTransactor;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
 @Component
 public class RepositoryTransactor implements IRepositoryTransactor
 {
 
+    @Transactional
     public Result executeTransaction(Action action) throws Exception
     {
         var transactionResult = action.execute();
